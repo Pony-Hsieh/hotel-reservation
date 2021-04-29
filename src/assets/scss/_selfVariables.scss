@@ -1,0 +1,19 @@
+$dominant-color: #7b9faa;
+$light-dominant-color: #b8d1d9;
+$dark-gray: #4a4a4a;
+$light-gray: #f3f3f3;
+// $dominant-color: #e1e4e9;
+// $second-color: #343b4d;
+// $accent-color: #316aff; // 直接改 BS 的 _variables.scss 的 primary
+
+// $black: #1a1a1a;
+// $light-black: #2a2a2a;
+// $pale-red: #a37a74;
+// $pale-green: #748067;
+// $pure-yellow: #ffa91f;
+
+%allFlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

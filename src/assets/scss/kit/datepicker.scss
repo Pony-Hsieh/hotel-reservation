@@ -1,0 +1,5 @@
+@import "@/assets/scss/_selfVariables"; // 自定義變數
+$default-color: #555;
+$primary-color: $dominant-color;
+
+@import "~vue2-datepicker/scss/index.scss";

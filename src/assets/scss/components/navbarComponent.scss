@@ -1,0 +1,50 @@
+@import "@/assets/scss/_selfVariables"; // 自定義變數
+
+nav {
+    height: 100vh;
+    width: 33.3333%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    // background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+ul {
+    // background-color: #000;
+    width: 100%;
+
+    li {
+        display: flex;
+        height: 56px;
+        border-radius: 8px;
+        margin: 40px 0;
+        width: 100%;
+        .leftLine {
+            width: 25%;
+            > div {
+                margin-top: calc(56px / 2 - 8px / 2);
+                border-top: 8px solid #000;
+            }
+        }
+    }
+
+    a {
+        width: 75%;
+        height: 100%;
+        font-size: 24px;
+        // padding: 24px;
+        text-decoration: none;
+        color: $dark-gray;
+        background-color: #aaa;
+
+        @extend %allFlexCenter;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
