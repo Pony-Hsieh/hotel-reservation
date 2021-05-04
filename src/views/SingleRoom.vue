@@ -1,21 +1,36 @@
 <template>
     <div class="container-fluid">
-        <div style="width: 500px;">
-            <!-- <date-picker v-model="reservingDate" range="true" value-type="format" format="YYYY-MM-DD" /> -->
-            <date-picker v-model="reservingDate" range="true" value-type="format" format="YYYY-MM-DD"
-                :disabled-date="notAllowedReservedDate" />
-        </div>
-        {{ reservingDate }}
+        <div class="row">
 
-        <button class="btn btn-outline-success" @click.prevent="sendRevervation">sendRevervation</button>
-        <button class="btn btn-outline-success" @click.prevent="expandReservingDate">expandReservingDate</button>
-        <button class="btn btn-outline-success"
-            @click.prevent="clearAllRoomsReservation">clearAllRoomsReservation</button>
-        <!-- <img src="https://dummyimage.com/1920x1080/000/fff.png&text=3" class="d-block w-100" alt="..."> -->
+            <button type="button" class="btn d-sm-none closeNavBtn" @click="navStatus = !navStatus">
+                <ThemifyIcon icon="menu" />
+            </button>
+            <nav :class="{'ing' : navStatus}">
+                <ul class="list-unstyled ">
+                    <img src="https://i.pinimg.com/originals/31/44/0d/31440d1c7eae15bfcc118f1cb543df9c.png" alt="">
+                    <li class="d-sm-none ">
+                        <button type="button" class="btn" @click="navStatus = false">
+                            <ThemifyIcon icon="close" style="font-weight: 900;" />
+                        </button>
+                    </li>
+                    <li>
+                        <router-link to="/">首頁</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/rooms">所有房型</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/">聯繫我們</router-link>
+                    </li>
+                </ul>
+            </nav>
 
-        <!-- <div class="row">
+            <h2 class="text-center">{{ roomInfo.name }}</h2>
+
+            <!-- 房間圖片 -->
+            <!-- <div class="col-12 px-md-5"> -->
             <div class="col-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -23,16 +38,13 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://dummyimage.com/1920x900/000/fff.png&text=1" class="d-block w-100"
-                                alt="...">
+                            <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[2]})`}"></div>
                         </div>
                         <div class="carousel-item">
-                            <img src="https://dummyimage.com/1920x900/000/fff.png&text=2" class="d-block w-100"
-                                alt="...">
+                            <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[0]})`}"></div>
                         </div>
                         <div class="carousel-item">
-                            <img src="https://dummyimage.com/1920x900/000/fff.png&text=3" class="d-block w-100"
-                                alt="...">
+                            <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[1]})`}"></div>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -45,25 +57,129 @@
                     </a>
                 </div>
             </div>
-            <div class="col-8 bg-info">
-                col-8
-                單一房型
-                id : {{ roomID }}
+
+            <!-- 便利設施 -->
+            <div class="col-12 col-md-8 roomInfoText">
+                <div class="row">
+                    <div class="col-12 roomDescription">
+                        <p>{{ roomInfo.description }}</p>
+                    </div>
+
+                    <div class="col-6 amenitiesArea">
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Wi-Fi'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;" v-if="roomInfo.amenities['Wi-Fi']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">WiFi</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Air-Conditioner'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Air-Conditioner']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">冷氣</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Child-Friendly'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Child-Friendly']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">兒童友善</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Pet-Friendly'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Pet-Friendly']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">寵物友善</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Great-View'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Great-View']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">漂亮風景</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Room-Service'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Room-Service']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">客房服務</span>
+                        </div>
+                    </div>
+                    <div class="col-6 amenitiesArea">
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Breakfast'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Breakfast']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">早餐</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : roomInfo.amenities['Smoke-Free'] }">
+                            <ThemifyIcon icon="close" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Smoke-Free']" />
+                            <ThemifyIcon icon="check" style="font-weight: 900;" v-else />
+                            <span class="ml-3">抽菸</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Television'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Television']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">電視</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Sofa'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;" v-if="roomInfo.amenities['Sofa']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">沙發</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Refrigerator'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;"
+                                v-if="roomInfo.amenities['Refrigerator']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">冰箱</span>
+                        </div>
+                        <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Mini-Bar'] }">
+                            <ThemifyIcon icon="check" style="font-weight: 900;" v-if="roomInfo.amenities['Mini-Bar']" />
+                            <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                            <span class="ml-3">Mini-Bar</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-4 bg-warning">
-                col-4
+
+
+            <!-- 訂房區塊 -->
+            <div class="col-12 col-md-4 reservationArea">
+                <h3 class="text-center"> 訂房 </h3>
+
+                <label for="userName">
+                    <h5>* 姓名</h5>
+                </label>
+                <input type="text" id="userName" required>
+                <br />
+
+                <label for="userTel">
+                    <h5>* 電話</h5>
+                </label>
+                <input type="text" id="userTel" required>
+                <br />
+
+                <h5>* 預約日期</h5>
+                <date-picker v-model="reservingDate" range="true" value-type="format" format="YYYY-MM-DD"
+                    :disabled-date="notAllowedReservedDate" />
+
+                <button type="button">確認訂房</button>
             </div>
-        </div> -->
+
+            <footer>
+                footer footer footer footer footer footer footer footer footer footer footer
+            </footer>
+
+
+        </div>
     </div>
 </template>
-
 
 <script>
     import NavbarComponent from '@/components/NavbarComponent.vue';
     import FooterComponent from '@/components/FooterComponent.vue';
     import ThemifyIcon from "vue-themify-icons";
 
-    // 引入 HotelDatePicker
+    // 引入 DatePicker
     import DatePicker from 'vue2-datepicker';
     import '@/assets/scss/kit/datepicker.scss';
     import 'vue2-datepicker/locale/zh-tw';
@@ -73,6 +189,7 @@
 
         components: {
             DatePicker,
+            ThemifyIcon,
         },
 
         data() {
@@ -84,11 +201,10 @@
                         'Content-Type': 'application/json',
                     }
                 },
-
                 roomID: "",
                 testRoomID: "3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu",
                 roomData: {},
-                roomInfo: {},
+                roomInfo: {}, // 房間資訊(不含 booking 資訊)
                 serverReservedInfo: {},
 
                 // 最終要丟出的資料都放這裡
@@ -102,6 +218,11 @@
                 // 拓展所有預約中的日期
                 expandReservingDateArr: [],
                 // expandReservingDate: ["2021-04-28", "2021-04-29", "2021-04-30", "2021-05-01"],
+
+                navStatus: false,
+
+                randomRoom: [], // 隨機推薦房間
+                randomNumArr: [],
             };
         },
 
@@ -109,13 +230,13 @@
 
         created() {
             this.judgeRoomByRouterParam(); // 先將 訂單id 存入 data return 中
-            // this.getOrderData();
         },
 
 
 
         mounted() {
             this.getSingleRoom();
+            // this.getRandomRoom();
         },
 
 
@@ -129,7 +250,7 @@
 
             getSingleRoom() {
                 const vm = this;
-                vm.axios.get(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${vm.testRoomID}`, vm.axiosHeaders)
+                vm.axios.get(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${vm.roomID}`, vm.axiosHeaders)
                     .then((resolveRes) => {
                         console.log("getSingleRoom", resolveRes);
                         // vm.roomData = resolveRes.data;
@@ -186,7 +307,7 @@
                 }
                 vm.reserveingInfo = Object.assign({ ...vm.reserveingInfo }, { date: vm.expandReservingDateArr });
 
-                vm.axios.post(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${vm.testRoomID}`, vm.reserveingInfo, vm.axiosHeaders)
+                vm.axios.post(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${vm.roomID}`, vm.reserveingInfo, vm.axiosHeaders)
                     .then((resolveRes) => {
                         // console.log("resolveRes");
                         console.dir(resolveRes);
@@ -242,6 +363,54 @@
             },
 
 
+            // 取得兩間隨機推薦的房間
+            getRandomRoom() {
+                const vm = this;
+                vm.axios.get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", vm.axiosHeaders)
+                    .then((resolveRes) => {
+                        // console.log(resolveRes);
+                        let allRoomData;
+                        let temp = [];
+                        allRoomData = resolveRes.data.items;
+
+                        // 移除頁面中的房間
+                        allRoomData.forEach((item) => {
+                            // 因為 rooms 的 api 資料沒有 預約的資料，所以不能從這個 api 撈指定房間的資料
+                            if (item.id !== vm.roomID) {
+                                temp.push(item);
+                            }
+                        });
+                        // 隨機取兩間房間
+                        vm.getRandomNum();
+                        vm.randomRoom.push(temp[vm.randomNumArr[0]]);
+                        vm.randomRoom.push(temp[vm.randomNumArr[1]]);
+                    })
+                    .catch((rejectRes) => {
+                        console.log(rejectRes);
+                    });
+            },
+
+
+            getRandomNum() {
+                let arr = [0, 1, 2, 3, 4]; //原有陣列放全部數字
+                let result = []; //開另一個空陣列
+
+                for (let i = 0; i >= 0; i++) {
+                    let randomNum = Math.floor(Math.random() * arr.length); // 取得 0~4 隨機數字
+                    console.log("result[0]", result[0]);
+                    if (result[0] !== randomNum) { // 避免加入重複的數字
+                        // 如果是空陣列，一定可以加入，因為空陣列的 result[0] 是 undefined
+                        result.push(randomNum);
+                    }
+                    if (result.length === 2) { // 因為我只有要取兩個不同的隨機數字，因此長度為 2 的時候就停止
+                        break;
+                    }
+                };
+                this.randomNumArr = result;
+                // console.log("this.randomNumArr", this.randomNumArr);
+            },
+
+
             roomInfozxcvzxcv() {
                 this.roomInfo;
 
@@ -265,18 +434,32 @@
 
                 // 房間設施
                 this.roomInfo.amenities = {
-                    "Air-Conditioner": true,
-                    "Breakfast": true,
-                    "Child-Friendly": false,
-                    "Great-View": false,
-                    "Mini-Bar": false,
-                    "Pet-Friendly": true,
-                    "Refrigerator": true,
-                    "Room-Service": false,
-                    "Smoke-Free": true,
-                    "Sofa": false,
-                    "Television": true,
+                    // wifi
                     "Wi-Fi": true,
+                    //  冷氣
+                    "Air-Conditioner": true,
+
+                    // 早餐
+                    "Breakfast": true,
+                    // 漂亮風景
+                    "Great-View": false,
+                    // 迷你八
+                    "Mini-Bar": false,
+                    // 兒童友善
+                    "Child-Friendly": false,
+                    // 寵物友善
+                    "Pet-Friendly": true,
+                    // 冰箱
+                    "Refrigerator": true,
+                    // 客房服務
+                    "Room-Service": false,
+                    // 不能抽菸
+                    "Smoke-Free": true,
+                    // 沙發
+                    "Sofa": false,
+                    // 電視
+                    "Television": true,
+
                 };
 
 
@@ -307,6 +490,6 @@
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "@/assets/scss/frontEnd/singleRoom.scss";
 </style>

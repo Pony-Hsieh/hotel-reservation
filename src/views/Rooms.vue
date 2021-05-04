@@ -1,38 +1,26 @@
 <template>
-    <div>
-        <NavbarComponent />
-        <!-- <FooterComponent /> -->
-        <!-- <ThemifyIcon icon="user" />
-        <ThemifyIcon icon="angle-down" />
-        <ThemifyIcon icon="bookmark-alt" /> -->
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-4">
-
-                </div>
-                <div class="col-8 roomSection">
-                    <!-- 桌機板 hover 才可見房間資訊 -->
-                    <!-- 手機板 直接顯示房間資訊 -->
-                    <!-- 也就是 < 992 直接固定為 hover 狀態-->
-                    <div v-for="(item, index) in allRoomData" :key="index" class="singleRoomArea"
-                        style="position: relative;">
-                        <div :style=" {backgroundImage:'url('+item.imageUrl+')'}">
-                            <!-- <div class="filter"></div> -->
-                            <div class="singleRoomInfo">
-                                {{ item.name }}
-                                <a href="#" @click.prevent = "toSingleRoom(item.id)">更多資訊</a>
-                            </div>
-                        </div>
-                        <!-- <img :src="item.imageUrl" alt="" > -->
+    <div class="container-fluid">
+        <div class="roomSection">
+            <!-- 桌機板 hover 才可見房間資訊 -->
+            <!-- 手機板 直接顯示房間資訊 -->
+            <!-- 也就是 < 992 直接固定為 hover 狀態-->
+            <div v-for="(item, index) in allRoomData" :key="index" class="singleRoomArea" style="position: relative;">
+                <div :style=" {backgroundImage:'url('+item.imageUrl+')'}">
+                    <!-- <div class="filter"></div> -->
+                    <div class="singleRoomInfo">
+                        {{ item.name }}
+                        <a href="#" @click.prevent="toSingleRoom(item.id)">更多資訊</a>
                     </div>
                 </div>
+                <!-- <img :src="item.imageUrl" alt="" > -->
             </div>
         </div>
+    </div>
 
 
 
-        <!-- <section class="container-fluid bg-light text-white py-5" style="position:relative;">
+    <!-- <section class="container-fluid bg-light text-white py-5" style="position:relative;">
 
             <div class="row">
                 <div class="col-lg-4 bg-cover"
@@ -76,7 +64,6 @@
             </div>
         </section> -->
 
-    </div>
 </template>
 
 
@@ -118,7 +105,7 @@
                     .then((resolveRes) => {
                         console.log(resolveRes);
                         vm.allRoomData = resolveRes.data.items;
-                        console.log(vm.allRoomData);
+                        console.log("vm.allRoomData", vm.allRoomData);
                     })
 
                     .catch((rejectRes) => {
@@ -133,6 +120,6 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "@/assets/scss/frontEnd/rooms.scss";
 </style>

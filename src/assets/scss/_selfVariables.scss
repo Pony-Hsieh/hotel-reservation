@@ -1,7 +1,9 @@
-$dominant-color: #7b9faa;
-$light-dominant-color: #b8d1d9;
-$dark-gray: #4a4a4a;
-$light-gray: #f3f3f3;
+// $dominant-color: #7b9faa;
+$dominant-color: #8b98a9;
+$light-dominant-color: #bbc4c9;
+$light-gray: #dddddd;
+$dark-gray: #2e3238;
+$pale-silver: #c4bab1;
 // $dominant-color: #e1e4e9;
 // $second-color: #343b4d;
 // $accent-color: #316aff; // 直接改 BS 的 _variables.scss 的 primary
@@ -11,6 +13,15 @@ $light-gray: #f3f3f3;
 // $pale-red: #a37a74;
 // $pale-green: #748067;
 // $pure-yellow: #ffa91f;
+
+// 字體大小可參考此貼文
+// https://www.instagram.com/p/CMeSk72jEW0/
+$main-title: 42px;
+$title: 24px;
+$subtitle: 18px;
+$body-text: 16px;
+// 按鈕可考慮使用 $body-text
+$details: 14px;
 
 %allFlexCenter {
   display: flex;

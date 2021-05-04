@@ -10,6 +10,6 @@
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "@/assets/scss/components/footerComponent.scss";
 </style>

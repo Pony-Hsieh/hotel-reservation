@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import HomeFrame from '@/views/HomeFrame.vue';
 import Home from '@/views/Home.vue';
-import Rooms from '@/views/Rooms.vue';
 
 Vue.use(Router);
 
@@ -10,13 +10,34 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Home,
+            component: HomeFrame,
+            children: [
+                {
+                    // 首頁
+                    path: '',
+                    name: 'home',
+                    component: Home,
+                },
+                {
+                    // 房型總覽
+                    path: '/rooms',
+                    name: 'rooms',
+                    component: () => import('@/views/Rooms.vue'),
+                },
+                {
+                    // 關於我們
+                    path: '/aboutUs',
+                    name: 'aboutUs',
+                    component: () => import('@/views/AboutUs.vue'),
+                },
+            ]
         },
         // 房型總覽
         {
             path: '/rooms',
             name: 'rooms',
-            component: Rooms,
+            // component: Rooms,
+            component: () => import('@/views/AboutUs.vue'),
         },
         // 單一房型檢視
         {
@@ -25,10 +46,12 @@ export default new Router({
             component: () => import('@/views/SingleRoom.vue'),
         },
 
-        
-        
-        
-        
+
+
+
+
+
+
         {
             path: '/about',
             name: 'about',

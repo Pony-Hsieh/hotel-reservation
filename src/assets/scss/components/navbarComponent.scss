@@ -1,50 +1,181 @@
 @import "@/assets/scss/_selfVariables"; // 自定義變數
 
-nav {
-    height: 100vh;
-    width: 33.3333%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    // background-color: blue;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+button {
+    outline: none;
+    border-radius: 0;
+
+    &:focus {
+        box-shadow: none;
+    }
 }
 
-ul {
-    // background-color: #000;
-    width: 100%;
+.closeNavBtn {
+    height: 60px;
+    position: absolute;
+    position: fixed;
+    right: 0;
+    z-index: 3;
+    color: $dark-gray;
+
+    &:active {
+        color: $light-gray;
+        background-color: $dark-gray;
+    }
+}
+
+// 手機板
+nav {
+    width: 40vw;
+    height: 100vh;
+    background-color: $light-dominant-color;
+    position: fixed;
+    top: 0;
+    right: -40vw;
+    z-index: 16;
+    transition: all 1s;
+
+    &.ing {
+        right: 0;
+    }
+
+    img {
+        display: none;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
 
     li {
-        display: flex;
-        height: 56px;
-        border-radius: 8px;
-        margin: 40px 0;
         width: 100%;
-        .leftLine {
-            width: 25%;
-            > div {
-                margin-top: calc(56px / 2 - 8px / 2);
-                border-top: 8px solid #000;
+        height: 60px;
+        background-color: $light-gray;
+
+        &:first-of-type {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        button {
+            height: 100%;
+            background-color: $light-gray;
+            &:active {
+                color: $light-gray;
+                background-color: $dark-gray;
+            }
+        }
+
+        a {
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: $dark-gray;
+            @extend %allFlexCenter;
+            &:active {
+                color: $light-gray;
+                background-color: $dark-gray;
             }
         }
     }
+}
+// 桌機板
+@media (min-width: 576px) {
+    nav {
+        width: 100%;
+        position: sticky;
+        height: auto;
 
-    a {
-        width: 75%;
-        height: 100%;
-        font-size: 24px;
-        // padding: 24px;
-        text-decoration: none;
-        color: $dark-gray;
-        background-color: #aaa;
+        img {
+            display: block;
+            height: 60px;
+        }
 
-        @extend %allFlexCenter;
+        ul {
+            flex-direction: row;
+        }
 
-        &:hover {
-            text-decoration: none;
+        button {
+            &:hover {
+                color: $light-gray;
+                background-color: $dark-gray;
+            }
+        }
+
+        a {
+            &:hover {
+                color: $light-gray;
+                background-color: $dark-gray;
+            }
         }
     }
 }
+// 手機板
+// nav {
+//     height: 100vh;
+//     width: 100%;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     z-index: 3;
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;
+//     background-image: url("https://images.unsplash.com/photo-1546062150-e1b6c6a63fa1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1040&q=80");
+//     background-size: cover;
+// }
+
+// ul {
+//     width: 100%;
+
+//     li {
+//         height: 44px;
+//         display: flex;
+//         margin: 20px 0;
+//         width: 100%;
+//         .leftLine {
+//             width: 25%;
+//             > div {
+//                 border-top: 0;
+//             }
+//         }
+//     }
+
+//     a {
+//         width: 75%;
+//         height: 100%;
+//         font-size: $subtitle;
+//         text-decoration: none;
+//         background-color: $light-gray;
+//         color: $dark-gray;
+
+//         @extend %allFlexCenter;
+
+//         &:hover {
+//             text-decoration: none;
+//             color: $light-gray;
+//             background-color: $dark-gray;
+//         }
+//     }
+// }
+
+// // 桌機板
+// @media (min-width: 576px) {
+//     nav {
+//         width: 33.33333%;
+//         background-image: none;
+//     }
+//     ul {
+//         li {
+//             margin: 32px 0;
+//             .leftLine {
+//                 > div {
+//                     margin-top: calc(56px / 2 - 2px / 2);
+//                     border-top: 2px solid #000;
+//                 }
+//             }
+//         }
+//     }
+// }
