@@ -78,6 +78,7 @@ nav {
             text-decoration: none;
             color: $dark-gray;
             @extend %allFlexCenter;
+            
             &:active {
                 color: $light-gray;
                 background-color: $dark-gray;

@@ -1,36 +1,13 @@
 <template>
     <div>
 
-        <!-- <nav>
-        <ul class="list-unstyled">
-            <li>
-                <div class="leftLine">
-                    <div></div>
-                </div>
-                <router-link to="/">首頁</router-link>
-            </li>
-            <li>
-                <div class="leftLine">
-                    <div></div>
-                </div>
-                <router-link to="/rooms">所有房型</router-link>
-            </li>
-            <li>
-                <div class="leftLine">
-                    <div></div>
-                </div>
-                <router-link to="/">關於我們</router-link>
-            </li>
-        </ul>
-    </nav> -->
-
         <button type="button" class="btn d-sm-none closeNavBtn" @click="navStatus = !navStatus">
             <ThemifyIcon icon="menu" />
         </button>
         <nav :class="{'ing' : navStatus}">
             <ul class="list-unstyled ">
                 <img src="https://i.pinimg.com/originals/31/44/0d/31440d1c7eae15bfcc118f1cb543df9c.png" alt="">
-                <li class="d-sm-none ">
+                <li class="d-sm-none">
                     <button type="button" class="btn" @click="navStatus = false">
                         <ThemifyIcon icon="close" style="font-weight: 900;" />
                     </button>
@@ -42,10 +19,11 @@
                     <router-link to="/rooms">所有房型</router-link>
                 </li>
                 <li>
-                    <router-link to="/">聯繫我們</router-link>
+                    <router-link to="/contactUs">聯絡我們</router-link>
                 </li>
             </ul>
         </nav>
+
     </div>
 </template>
 
@@ -54,7 +32,7 @@
     import ThemifyIcon from "vue-themify-icons";
 
     export default {
-        name: "nav",
+        name: "NavbarComponent",
 
         components: {
             ThemifyIcon,
@@ -63,11 +41,16 @@
         data() {
             return {
                 navStatus: false,
+                nowPage: "",
             };
         },
 
         mounted() {
-            console.log(this.$route);
+            // console.log(this.$route);
+            this.nowPage = this.$route.fullPath;
+            // console.log("this.nowPage", this.nowPage);
+
+
             if (this.$route.fullPath === "/") {
                 this.navStatus = true;
             }
@@ -85,7 +68,7 @@
                 }
                 else {
                     this.navStatus = false;
-                    console.log(to.$route.fullPath);
+                    // console.log(to.$route.fullPath);
                 }
             },
         },
