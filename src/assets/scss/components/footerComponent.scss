@@ -1,14 +1,12 @@
 @import "@/assets/scss/_selfVariables"; // 自定義變數
 
-footer{
-  // position: fixed;
-  // bottom: 0;
+footer {
   width: 100%;
-  // background-color: rgba($color: $dark-gray, $alpha: 0.7);
-  background-color: $light-dominant-color;
-  background-color: $dark-gray;
-  color: $dark-gray;
-  color: $light-gray;
   padding: 8px 0;
+  background-color: $dark-gray;
+  color: $light-gray;
   font-size: $body-text;
+  
+  // 可透過此寫法改變顏色透明度
+  // background-color: rgba($color: $dark-gray, $alpha: 0.7);
 }

@@ -17,3 +17,32 @@ $details: 14px;
   justify-content: center;
   align-items: center;
 }
+
+// RWD 斷點設置
+// 與 bootstrap 4.5 一致
+$media-breakpoint-sm: 576px;
+$media-breakpoint-md: 768px;
+$media-breakpoint-lg: 992px;
+$media-breakpoint-xl: 1200px;
+
+// 之後再想想看有沒有辦法把這四個整合成一個；(也許是透過傳入參數的方式)
+@mixin layout-sm {
+  @media (min-width: $media-breakpoint-sm) {
+    @content;
+  }
+}
+@mixin layout-md {
+  @media (min-width: $media-breakpoint-md) {
+    @content;
+  }
+}
+@mixin layout-lg {
+  @media (min-width: $media-breakpoint-lg) {
+    @content;
+  }
+}
+@mixin layout-xl {
+  @media (min-width: $media-breakpoint-xl) {
+    @content;
+  }
+}
