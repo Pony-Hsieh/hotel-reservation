@@ -53,63 +53,63 @@
 
 
 <script>
-import ThemifyIcon from 'vue-themify-icons';
+    import ThemifyIcon from 'vue-themify-icons';
 
-import NavbarComponent from '@/components/NavbarComponent.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
+    import NavbarComponent from '@/components/NavbarComponent.vue';
+    import FooterComponent from '@/components/FooterComponent.vue';
 
-export default {
-  name: 'Rooms',
+    export default {
+        name: 'Rooms',
 
-  components: {
-    NavbarComponent,
-    FooterComponent,
-    ThemifyIcon,
-  },
-
-  data() {
-    return {
-      allRoomData: '',
-      loadingStatus: true,
-    };
-  },
-
-  created() {
-    this.getAllRoom();
-  },
-
-
-  methods: {
-
-    getAllRoom() {
-      const vm = this;
-      vm.loadingStatus = true;
-
-      vm.axios.get('https://challenge.thef2e.com/api/thef2e2019/stage6/rooms', {
-        headers: {
-          authorization:
-                            `Bearer ${process.env.VUE_APP_TOKEN}`, // 已改為自己的 token
-          'content-type': 'application/json',
+        components: {
+            ThemifyIcon,
+            NavbarComponent,
+            FooterComponent,
         },
-      })
-        .then((resolveRes) => {
-          // console.log(resolveRes);
-          vm.allRoomData = resolveRes.data.items;
-          // console.log("vm.allRoomData", vm.allRoomData);
-          vm.loadingStatus = false;
-        })
 
-        .catch((rejectRes) => {
-          // console.log(rejectRes);
-        });
-    },
+        data() {
+            return {
+                allRoomData: '',
+                loadingStatus: true,
+            };
+        },
 
-    toSingleRoom(roomID) {
-      this.$router.push({ path: '/singleRoom', query: { roomID } });
-    },
+        created() {
+            this.getAllRoom();
+        },
 
-  },
-};
+
+        methods: {
+
+            getAllRoom() {
+                const vm = this;
+                vm.loadingStatus = true;
+
+                vm.axios.get('https://challenge.thef2e.com/api/thef2e2019/stage6/rooms', {
+                    headers: {
+                        authorization:
+                            `Bearer ${process.env.VUE_APP_TOKEN}`, // 已改為自己的 token
+                        'content-type': 'application/json',
+                    },
+                })
+                    .then((resolveRes) => {
+                        // console.log(resolveRes);
+                        vm.allRoomData = resolveRes.data.items;
+                        // console.log("vm.allRoomData", vm.allRoomData);
+                        vm.loadingStatus = false;
+                    })
+
+                    .catch((rejectRes) => {
+                        // console.log(rejectRes);
+                    });
+            },
+
+            toSingleRoom(roomID) {
+                this.$router.push({ path: '/singleRoom', query: { roomID } });
+            },
+
+        },
+    };
 </script>
 
 

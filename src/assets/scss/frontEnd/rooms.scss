@@ -1,11 +1,11 @@
 @import "@/assets/scss/_selfVariables"; // 自定義變數
 
 h2 {
-  height: 60px;
-  text-align: center;
-  font-size: 32px;
-  padding-top: calc(60px / 2 - 15px / 2);
-  /*
+    height: 60px;
+    text-align: center;
+    font-size: 32px;
+    padding-top: calc(60px / 2 - 15px / 2);
+    /*
         60px 為 h2 高度
         15px 為 singleRoomArea 的 margin-top
         這樣設置可以看起來視覺垂直置中
@@ -13,117 +13,117 @@ h2 {
 }
 
 .roomSection {
-  padding-left: 15px;
-  padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .singleRoomArea {
-  max-width: 100%;
-  height: 100vh;
-  padding: 15px 0;
-
-  > div {
-    height: calc(100vh - 30px);
-    background-position: center center;
-    background-size: cover;
-  }
-
-  .singleRoomInfo {
-    height: 100%;
-    width: 100%;
-    color: #fff;
-    @extend %allFlexCenter;
-    flex-direction: column;
+    max-width: 100%;
+    height: 100vh;
+    padding: 15px 0;
 
     > div {
-      background-color: rgba($color: #000, $alpha: 0.5);
-      padding: 0.875rem;
+        height: calc(100vh - 30px);
+        background-position: center center;
+        background-size: cover;
     }
 
-    a {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      color: #fff;
+    .singleRoomInfo {
+        height: 100%;
+        width: 100%;
+        color: #fff;
+        @extend %allFlexCenter;
+        flex-direction: column;
 
-      &:hover {
-        background-color: #fff;
-        color: $dark-gray;
-      }
+        > div {
+            background-color: rgba($color: #000, $alpha: 0.5);
+            padding: 0.875rem;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+
+            &:hover {
+                background-color: #fff;
+                color: $dark-gray;
+            }
+        }
     }
-  }
 
-  h3 {
-    font-weight: 300;
-  }
+    h3 {
+        font-weight: 300;
+    }
 }
 
 // loading 動畫
 .loadingAnimation {
-  max-width: 100%;
-  height: calc(100vh - 60px - 40px - 30px);
-  // 手機版
-  /*
+    max-width: 100%;
+    height: calc(100vh - 60px - 40px - 30px);
+    // 手機版
+    /*
         100 vh 為一個 singleRoomArea 的高度
         60px 為 h2 的高度
         40px 為 footer 的高度
         30px 為預留 margin 推擠的高度
     */
-  // 手機版以上
-  /*
+    // 手機版以上
+    /*
         100 vh 為一個 singleRoomArea 的高度
         60px 為 nav 的高度
         40px 為 footer 的高度
         30px 為預留 margin 推擠的高度
     */
-  margin: 15px 0;
-  background-color: $light-gray;
+    margin: 15px 0;
+    background-color: $light-gray;
 }
 
 .spinner {
-  width: 80px;
-  height: 80px;
-  position: relative;
-  margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin: 0 auto;
 }
 
 .double-bounce1,
 .double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: $dark-gray;
-  opacity: 0.6;
-  position: absolute;
-  top: calc((100vh - 60px - 40px - 30px) / 2 - 80px / 2);
-  left: 0;
-  -webkit-animation: sk-bounce 2s infinite ease-in-out;
-  animation: sk-bounce 2s infinite ease-in-out;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: $dark-gray;
+    opacity: 0.6;
+    position: absolute;
+    top: calc((100vh - 60px - 40px - 30px) / 2 - 80px / 2);
+    left: 0;
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
 }
 
 .double-bounce2 {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
 }
 
 @-webkit-keyframes sk-bounce {
-  0%,
-  100% {
-    -webkit-transform: scale(0);
-  }
-  50% {
-    -webkit-transform: scale(1);
-  }
+    0%,
+    100% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+    }
 }
 
 @keyframes sk-bounce {
-  0%,
-  100% {
-    transform: scale(0);
-    -webkit-transform: scale(0);
-  }
-  50% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
+    0%,
+    100% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
 }

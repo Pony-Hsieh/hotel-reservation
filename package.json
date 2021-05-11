@@ -1,57 +1,57 @@
 {
-  "name": "hotel_reservation",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "core-js": "^2.6.5",
-    "jquery": "^3.6.0",
-    "popper.js": "^1.16.1",
-    "vue": "^2.6.10",
-    "vue-axios": "^3.2.4",
-    "vue-router": "^3.0.3",
-    "vue-themify-icons": "^1.0.0",
-    "vue2-datepicker": "^3.9.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.12.0",
-    "@vue/cli-plugin-eslint": "^3.12.0",
-    "@vue/cli-service": "^3.12.0",
-    "@vue/eslint-config-airbnb": "^4.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.0",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "hotel_reservation",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "dependencies": {
+        "axios": "^0.21.1",
+        "bootstrap": "^4.6.0",
+        "core-js": "^2.6.5",
+        "jquery": "^3.6.0",
+        "popper.js": "^1.16.1",
+        "vue": "^2.6.10",
+        "vue-axios": "^3.2.4",
+        "vue-router": "^3.0.3",
+        "vue-themify-icons": "^1.0.0",
+        "vue2-datepicker": "^3.9.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.12.0",
+        "@vue/cli-plugin-eslint": "^3.12.0",
+        "@vue/cli-service": "^3.12.0",
+        "@vue/eslint-config-airbnb": "^4.0.0",
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.16.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "node-sass": "^4.12.0",
+        "sass-loader": "^8.0.0",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "@vue/airbnb"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }

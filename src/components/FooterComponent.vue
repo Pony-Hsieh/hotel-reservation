@@ -6,25 +6,25 @@
 
 
 <script>
-export default {
-  name: 'FooterComponent',
+    export default {
+        name: 'FooterComponent',
 
-  data() {
-    return {
-      copyrightYear: '',
+        data() {
+            return {
+                copyrightYear: "",
+            };
+        },
+
+        created() {
+            this.getCopyrightYear();
+        },
+
+        methods: {
+            getCopyrightYear() {
+                this.copyrightYear = new Date().getFullYear();
+            },
+        },
     };
-  },
-
-  created() {
-    this.getCopyrightYear();
-  },
-
-  methods: {
-    getCopyrightYear() {
-      this.copyrightYear = new Date().getFullYear();
-    },
-  },
-};
 </script>
 
 

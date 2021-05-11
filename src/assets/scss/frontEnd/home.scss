@@ -1,16 +1,16 @@
 @import "@/assets/scss/_selfVariables"; // 自定義變數
 
 .wholeView {
-  height: 100vh;
-  width: 100vw;
-  background-image: url("https://images.unsplash.com/photo-1546062150-e1b6c6a63fa1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1040&q=80");
-  background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("https://images.unsplash.com/photo-1546062150-e1b6c6a63fa1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1040&q=80");
+    background-size: cover;
 
-  @include layout-sm {
-    // 如果沒有要傳入參數，那 layout-sm 後方可以不用帶一組小括號
-    height: calc(100vh - 60px);
-    background-position: center center;
-  }
+    @include layout-sm {
+        // 如果沒有要傳入參數，那 layout-sm 後方可以不用帶一組小括號
+        height: calc(100vh - 60px);
+        background-position: center center;
+    }
 }
 
 // 留著以供對照 兩種寫法(有/無 使用 @mixin) 看起來的程式碼舒適度

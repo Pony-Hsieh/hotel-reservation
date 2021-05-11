@@ -7,15 +7,15 @@
 
 
 <script>
-import NavbarComponent from '@/components/NavbarComponent.vue';
+    import NavbarComponent from '@/components/NavbarComponent.vue';
 
-export default {
-  name: 'home',
+    export default {
+        name: 'Home',
 
-  components: {
-    NavbarComponent,
-  },
-};
+        components: {
+            NavbarComponent,
+        },
+    };
 </script>
 
 

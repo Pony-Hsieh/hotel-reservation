@@ -29,56 +29,44 @@
 
 
 <script>
-import ThemifyIcon from 'vue-themify-icons';
+    import ThemifyIcon from 'vue-themify-icons';
 
-export default {
-  name: 'NavbarComponent',
+    export default {
+        name: 'NavbarComponent',
 
-  components: {
-    ThemifyIcon,
-  },
+        components: {
+            ThemifyIcon,
+        },
 
-  data() {
-    return {
-      navStatus: false,
-      nowPage: '',
-      navLightColor: false,
+        data() {
+            return {
+                navStatus: false,
+            };
+        },
+
+        mounted() {
+            // console.log(this.$route);
+
+            if (this.$route.fullPath === '/') {
+                this.navStatus = true;
+            } else {
+                this.navStatus = false;
+            }
+        },
+
+        watch: {
+            $route(to, from) {
+                // console.log("TO", to);
+                // console.log("FROM", from);
+                if (to.$route.fullPath === '/') {
+                    this.navStatus = true;
+                } else {
+                    this.navStatus = false;
+                    // console.log(to.$route.fullPath);
+                }
+            },
+        },
     };
-  },
-
-  mounted() {
-    // console.log(this.$route);
-    this.nowPage = this.$route.fullPath;
-    // console.log("this.nowPage", this.nowPage);
-
-    if (this.$route.fullPath === '/') {
-      this.navStatus = true;
-    } else {
-      this.navStatus = false;
-    }
-
-    if (this.$route.fullPath === '/rooms') {
-      this.navLightColor = true;
-    } else {
-      this.navLightColor = false;
-    }
-
-    // if()
-  },
-
-  watch: {
-    $route(to, from) {
-      // console.log("TO", to);
-      // console.log("FROM", from);
-      if (to.$route.fullPath === '/') {
-        this.navStatus = true;
-      } else {
-        this.navStatus = false;
-        // console.log(to.$route.fullPath);
-      }
-    },
-  },
-};
 </script>
 
 
