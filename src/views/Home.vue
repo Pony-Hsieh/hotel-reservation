@@ -7,19 +7,15 @@
 
 
 <script>
-    import NavbarComponent from '@/components/NavbarComponent.vue';
-    import FooterComponent from '@/components/FooterComponent.vue';
-    import ThemifyIcon from "vue-themify-icons";
+import NavbarComponent from '@/components/NavbarComponent.vue';
 
-    export default {
-        name: 'home',
+export default {
+  name: 'home',
 
-        components: {
-            NavbarComponent,
-            FooterComponent,
-            ThemifyIcon,
-        },
-    };
+  components: {
+    NavbarComponent,
+  },
+};
 </script>
 
 

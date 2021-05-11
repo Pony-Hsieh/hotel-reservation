@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import axios from 'axios';
-import VueAxios from 'vue-axios'
-import App from './App.vue';
-import router from './router';
+import VueAxios from 'vue-axios';
 import 'bootstrap';
 
-// axios.defaults.withCredentials = true;
+import App from './App.vue';
+import router from './router';
 
 Vue.use(VueAxios, axios);
 

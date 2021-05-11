@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/hotel-reservation/dist/'
-}
+  publicPath: '/hotel-reservation/dist/',
+};
