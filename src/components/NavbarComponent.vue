@@ -6,7 +6,10 @@
         </button>
         <nav :class="{'ing' : navStatus}">
             <ul class="list-unstyled ">
-                <img src="https://i.pinimg.com/originals/31/44/0d/31440d1c7eae15bfcc118f1cb543df9c.png" alt="logo">
+                <!-- <img src="https://i.pinimg.com/originals/31/44/0d/31440d1c7eae15bfcc118f1cb543df9c.png" alt="logo"> -->
+                <div class="logoArea">
+                    <img src="@/assets/img/logo_remvoe_bg.png" alt="logo">
+                </div>
                 <li class="d-sm-none">
                     <button type="button" class="btn" @click="navStatus = false">
                         <ThemifyIcon icon="close" style="font-weight: 900;" />
