@@ -1,16 +1,16 @@
 <template>
     <div>
         <NavbarComponent />
-        <div class="wholeView"></div>
+        <div class="wholeView" />
     </div>
 </template>
 
 
 <script>
-    import NavbarComponent from '@/components/NavbarComponent.vue';
+    import NavbarComponent from "@/components/NavbarComponent.vue";
 
     export default {
-        name: 'Home',
+        name: "Home",
 
         components: {
             NavbarComponent,

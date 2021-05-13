@@ -9,7 +9,8 @@ h2 {
     height: 60px;
     line-height: 60px;
     margin: 0;
-    font-size: $title;
+    font-size: 32px;
+    font-weight: 400;
 
     @include layout-sm {
         height: 120px;
@@ -66,10 +67,27 @@ h2 {
     }
 }
 
+.descriptionShort {
+    margin-top: 32px;
+
+    &:first-of-type {
+        @extend %allFlexCenter;
+    }
+}
+
+.roomDescription {
+    p {
+        margin: 32px 0;
+    }
+    // @include layout-sm {
+    // margin-top: 32px;
+    // }
+}
+
 .amenitiesArea {
     background-color: #f8f9fa; // 和 BS 4.5 的 bg-light 相同
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding: 16px;
+    margin-top: 8px;
 }
 
 .singleAmenity {
@@ -82,24 +100,13 @@ h2 {
     color: $light-gray;
 }
 
-.roomDescription {
-    p {
-        padding-top: 16px;
-        margin-left: -10px;
-        margin-right: -10px;
-    }
-
-    @include layout-sm {
-        padding-top: 32px;
-    }
-}
-
+// 預約欄位
 .reservationArea {
     margin-bottom: 60px;
 
     h3 {
         padding-top: 32px;
-        font-size: $title;
+        font-size: $subtitle;
     }
 
     label {
@@ -111,7 +118,7 @@ h2 {
         width: 75%;
         margin: 0 auto;
         display: block;
-        font-size: $subtitle;
+        font-size: $body-text;
     }
 
     input {
@@ -133,6 +140,7 @@ h2 {
 
         &:focus {
             border-color: $dominant-color;
+            border-width: 2px;
         }
     }
     .mx-datepicker-range {
@@ -164,6 +172,78 @@ h2 {
     }
 }
 
+.randomRoomAreaMainTitle {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    font-size: $subtitle;
+}
+
+.randomRoomArea {
+    display: none;
+    padding: 0;
+    margin-bottom: 60px;
+
+    h4 {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        font-weight: 400;
+        text-align: center;
+        font-size: $subtitle;
+    }
+
+    h5 {
+        font-weight: 400;
+        text-align: center;
+    }
+
+    a {
+        width: 84%;
+        display: block;
+        margin-top: 20px;
+        margin-right: auto;
+        margin-bottom: 50px;
+        margin-left: auto;
+        padding: 0.375rem 0.75rem;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 0;
+        outline: none;
+        border: none;
+        background-color: $light-dominant-color;
+        color: $dark-gray;
+        
+        &:hover {
+            background-color: $dark-gray;
+            color: $light-dominant-color;
+        }
+
+        &:active {
+            transform: translate(2px, 2px);
+        }
+    }
+
+    @include layout-md {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+
+.singleRecommendRoom {
+    border: 1px solid $dark-gray;
+    width: 40%;
+
+    .singleRecommendRoomImage {
+        margin: -1px;
+        // width: 500px;
+        height: 250px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom center;
+    }
+}
+
+// Modal
 .modal-header {
     border-bottom: none;
 }

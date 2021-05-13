@@ -1,9 +1,10 @@
 <template>
     <div>
-
         <NavbarComponent />
 
-        <h2 class="d-sm-none">所有房型</h2>
+        <h2 class="d-sm-none">
+            所有房型
+        </h2>
 
         <div class="roomSection">
             <!--
@@ -13,7 +14,7 @@
             -->
 
             <!-- loading 動畫 -->
-            <div class="loadingAnimation" v-if="loadingStatus">
+            <div v-if="loadingStatus" class="loadingAnimation">
                 <!-- <div class="loadingAnimation"> -->
                 <!--
                     v-if   ：條件為 true 時會把內容的 DOM 渲染出來、條件為 false 時把 DOM 移掉；
@@ -24,8 +25,8 @@
                                     這點尚不知道如何驗證，只是做直覺性的推測
                 -->
                 <div class="spinner">
-                    <div class="double-bounce1"></div>
-                    <div class="double-bounce2"></div>
+                    <div class="double-bounce1" />
+                    <div class="double-bounce2" />
                 </div>
             </div>
 
@@ -43,23 +44,21 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <FooterComponent />
-
     </div>
 </template>
 
 
 <script>
-    import ThemifyIcon from 'vue-themify-icons';
+    import ThemifyIcon from "vue-themify-icons";
 
-    import NavbarComponent from '@/components/NavbarComponent.vue';
-    import FooterComponent from '@/components/FooterComponent.vue';
+    import NavbarComponent from "@/components/NavbarComponent.vue";
+    import FooterComponent from "@/components/FooterComponent.vue";
 
     export default {
-        name: 'Rooms',
+        name: "Rooms",
 
         components: {
             ThemifyIcon,
@@ -69,7 +68,7 @@
 
         data() {
             return {
-                allRoomData: '',
+                allRoomData: "",
                 loadingStatus: true,
             };
         },
@@ -85,11 +84,11 @@
                 const vm = this;
                 vm.loadingStatus = true;
 
-                vm.axios.get('https://challenge.thef2e.com/api/thef2e2019/stage6/rooms', {
+                vm.axios.get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", {
                     headers: {
                         authorization:
                             `Bearer ${process.env.VUE_APP_TOKEN}`, // 已改為自己的 token
-                        'content-type': 'application/json',
+                        "content-type": "application/json",
                     },
                 })
                     .then((resolveRes) => {
@@ -105,7 +104,7 @@
             },
 
             toSingleRoom(roomID) {
-                this.$router.push({ path: '/singleRoom', query: { roomID } });
+                this.$router.push({ path: "/singleRoom", query: { roomID } });
             },
 
         },

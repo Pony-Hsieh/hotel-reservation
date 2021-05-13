@@ -1,12 +1,10 @@
 <template>
     <div>
-
         <button type="button" class="btn d-sm-none closeNavBtn" @click="navStatus = !navStatus">
             <ThemifyIcon icon="menu" />
         </button>
         <nav :class="{'ing' : navStatus}">
             <ul class="list-unstyled ">
-                <!-- <img src="https://i.pinimg.com/originals/31/44/0d/31440d1c7eae15bfcc118f1cb543df9c.png" alt="logo"> -->
                 <div class="logoArea">
                     <img src="@/assets/img/logo_remvoe_bg.png" alt="logo">
                 </div>
@@ -16,26 +14,31 @@
                     </button>
                 </li>
                 <li>
-                    <router-link to="/">首頁</router-link>
+                    <router-link to="/">
+                        首頁
+                    </router-link>
                 </li>
                 <li>
-                    <router-link to="/rooms">所有房型</router-link>
+                    <router-link to="/rooms">
+                        所有房型
+                    </router-link>
                 </li>
                 <li>
-                    <router-link to="/contactUs">聯絡我們</router-link>
+                    <router-link to="/contactUs">
+                        聯絡我們
+                    </router-link>
                 </li>
             </ul>
         </nav>
-
     </div>
 </template>
 
 
 <script>
-    import ThemifyIcon from 'vue-themify-icons';
+    import ThemifyIcon from "vue-themify-icons";
 
     export default {
-        name: 'NavbarComponent',
+        name: "NavbarComponent",
 
         components: {
             ThemifyIcon,
@@ -47,27 +50,27 @@
             };
         },
 
-        mounted() {
-            // console.log(this.$route);
-
-            if (this.$route.fullPath === '/') {
-                this.navStatus = true;
-            } else {
-                this.navStatus = false;
-            }
-        },
-
         watch: {
             $route(to, from) {
                 // console.log("TO", to);
                 // console.log("FROM", from);
-                if (to.$route.fullPath === '/') {
+                if (to.$route.fullPath === "/") {
                     this.navStatus = true;
                 } else {
                     this.navStatus = false;
                     // console.log(to.$route.fullPath);
                 }
             },
+        },
+
+        mounted() {
+            // console.log(this.$route);
+
+            if (this.$route.fullPath === "/") {
+                this.navStatus = true;
+            } else {
+                this.navStatus = false;
+            }
         },
     };
 </script>

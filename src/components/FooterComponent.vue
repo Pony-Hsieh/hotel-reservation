@@ -7,7 +7,7 @@
 
 <script>
     export default {
-        name: 'FooterComponent',
+        name: "FooterComponent",
 
         data() {
             return {

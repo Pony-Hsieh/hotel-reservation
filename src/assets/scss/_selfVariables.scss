@@ -4,13 +4,17 @@ $light-gray: #dddddd;
 $dark-gray: #2e3238;
 $pale-silver: #c4bab1;
 
-// 字體大小可參考此貼文
+// 字體大小可參考這些貼文
 // https://www.instagram.com/p/CMeSk72jEW0/
-$main-title: 42px;
-$title: 24px;
-$subtitle: 18px;
-$body-text: 16px;
-$details: 14px;
+// https://ctkpro.com/blog/webdesign-font-size/
+$main-title: 48px;
+// $title: 24px;
+$title: 36px;
+// $subtitle: 18px;
+$subtitle: 26px;
+// $body-text: 16px;
+$body-text: 20px;
+$details: 16px;
 
 %allFlexCenter {
     display: flex;

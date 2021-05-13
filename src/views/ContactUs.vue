@@ -1,16 +1,17 @@
 <template>
     <div>
-
         <NavbarComponent />
 
-        <h1 class="d-sm-none">聯絡我們</h1>
+        <h1 class="d-sm-none">
+            聯絡我們
+        </h1>
 
         <section>
             <div>
                 <h3>
                     <ThemifyIcon icon="mobile" />
                     聯絡電話：
-                    <br />
+                    <br>
                     (點按可直接撥打)
                 </h3>
                 <a href="tel:+886-2-23206239">02-2320-6239</a>
@@ -42,19 +43,18 @@
         </div>
 
         <FooterComponent />
-
     </div>
 </template>
 
 
 <script>
-    import ThemifyIcon from 'vue-themify-icons';
+    import ThemifyIcon from "vue-themify-icons";
 
-    import NavbarComponent from '@/components/NavbarComponent.vue';
-    import FooterComponent from '@/components/FooterComponent.vue';
+    import NavbarComponent from "@/components/NavbarComponent.vue";
+    import FooterComponent from "@/components/FooterComponent.vue";
 
     export default {
-        name: 'AboutUs',
+        name: "AboutUs",
 
         components: {
             ThemifyIcon,

@@ -1,34 +1,31 @@
 <template>
     <div>
-
         <NavbarComponent />
 
         <div class="container-fluid">
             <div class="row">
-
-                <h2 class="text-center">{{ roomInfo.name }}</h2>
+                <h2 class="text-center">
+                    {{ roomInfo.name }}
+                </h2>
 
                 <!-- 房間圖片 -->
                 <div class="col-12">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
                         data-interval="false">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" />
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1" />
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2" />
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item">
-                                <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[0]})`}">
-                                </div>
+                                <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[0]})`}" />
                             </div>
                             <div class="carousel-item">
-                                <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[1]})`}">
-                                </div>
+                                <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[1]})`}" />
                             </div>
                             <div class="carousel-item active">
-                                <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[2]})`}">
-                                </div>
+                                <div class="carousel-image" :style="{backgroundImage:`url(${roomInfo.imageUrl[2]})`}" />
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
@@ -48,157 +45,188 @@
                     </div>
                 </div>
 
-                <!-- 便利設施 -->
+                <!-- 房間詳細資訊 -->
                 <div class="col-12 col-md-8 roomInfoText">
                     <div class="row">
+
+                        <div class="col-md-4 descriptionShort">
+                            {{ roomInfo.descriptionShort.GuestMax }}人房
+                        </div>
+                        <div class="col-md-8 text-right descriptionShort">
+                            平日價格：NTD ${{ roomInfo.normalDayPrice }}
+                            <br>
+                            假日價格(含特殊節日)：NTD ${{ roomInfo.holidayPrice }}
+                        </div>
+
+
                         <div class="col-12 roomDescription">
                             <p>{{ roomInfo.description }}</p>
                         </div>
 
+                        <!-- 便利設施 -->
+                        <div class="col-12">
+                            房間服務：
+                        </div>
                         <div class="col-6 amenitiesArea">
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Wi-Fi'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Wi-Fi']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Wi-Fi']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">WiFi</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Air-Conditioner'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Air-Conditioner']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Air-Conditioner']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">冷氣</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Child-Friendly'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Child-Friendly']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Child-Friendly']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">兒童友善</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Pet-Friendly'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Pet-Friendly']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Pet-Friendly']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">寵物友善</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Great-View'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Great-View']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Great-View']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">漂亮風景</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Room-Service'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Room-Service']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Room-Service']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">客房服務</span>
                             </div>
                         </div>
                         <div class="col-6 amenitiesArea">
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Breakfast'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Breakfast']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Breakfast']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">早餐</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : roomInfo.amenities['Smoke-Free'] }">
-                                <ThemifyIcon icon="close" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Smoke-Free']" />
-                                <ThemifyIcon icon="check" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Smoke-Free']" icon="close"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="check" style="font-weight: 900;" />
                                 <span class="ml-3">抽菸</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Television'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Television']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Television']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">電視</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Sofa'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;" v-if="roomInfo.amenities['Sofa']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Sofa']" icon="check" style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">沙發</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Refrigerator'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Refrigerator']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Refrigerator']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">冰箱</span>
                             </div>
                             <div class="singleAmenity" :class="{'fadeInfo' : !roomInfo.amenities['Mini-Bar'] }">
-                                <ThemifyIcon icon="check" style="font-weight: 900;"
-                                    v-if="roomInfo.amenities['Mini-Bar']" />
-                                <ThemifyIcon icon="close" style="font-weight: 900;" v-else />
+                                <ThemifyIcon v-if="roomInfo.amenities['Mini-Bar']" icon="check"
+                                    style="font-weight: 900;" />
+                                <ThemifyIcon v-else icon="close" style="font-weight: 900;" />
                                 <span class="ml-3">Mini-Bar</span>
                             </div>
                         </div>
+
+
+
                     </div>
                 </div>
 
                 <!-- 訂房區塊 -->
                 <div class="col-12 col-md-4 reservationArea">
-
-                    <h3 class="text-center">訂房</h3>
+                    <h3 class="text-center">
+                        訂房
+                    </h3>
 
                     <label for="userName">
                         <h5>* 姓名</h5>
                     </label>
-                    <input type="text" id="userName" v-model="reservingInfo.name" required>
-                    <br />
+                    <input id="userName" v-model="reservingInfo.name" type="text" required>
+                    <br>
 
                     <label for="userTel">
                         <h5>* 電話</h5>
                     </label>
-                    <input type="tel" id="userTel" v-model="reservingInfo.tel" required>
-                    <br />
+                    <input id="userTel" v-model="reservingInfo.tel" type="tel" required>
+                    <br>
 
                     <h5>* 預約日期</h5>
                     <date-picker v-model="reservingDate" range="true" value-type="format" format="YYYY-MM-DD"
                         :disabled-date="notAllowedReservedDate" />
 
-                    <button type="button" @click="sendRevervation">確認訂房</button>
-
+                    <button type="button" @click="sendRevervation">
+                        確認訂房
+                    </button>
                 </div>
 
+                <!-- 隨機推薦房間 -->
+                <h3 class="d-none d-md-block randomRoomAreaMainTitle">其他你可能感興趣的房型</h3>
+                <div class="col-12 randomRoomArea">
+                    <div v-for="(item, index) in randomRoom" :key="index" class="singleRecommendRoom">
+                        <div class="singleRecommendRoomImage"
+                            :style="{backgroundImage:`url(${randomRoom[index].imageUrl})`}" />
+                        <h4>{{ randomRoom[index].name }}</h4>
+                        <h5>平日價格：NTD ${{ randomRoom[index].normalDayPrice }}</h5>
+                        <h5>假日價格：NTD ${{ randomRoom[index].holidayPrice }}</h5>
+                        <a href="#" @click="toSingleRoom(randomRoom[index].id)">前往指定房型頁面</a>
+                    </div>
+                </div>
             </div>
         </div>
 
         <FooterComponent />
 
         <!-- Modal -->
-        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+        <div id="feedbackModal" class="modal fade" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-
                     <div class="modal-body">
                         <h3>{{ modalMsg.title }}</h3>
-                        <p v-html="modalMsg.content"></p>
+                        <p v-html="modalMsg.content" />
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 
 <script>
-    import $ from 'jquery';
-    import ThemifyIcon from 'vue-themify-icons';
+    import $ from "jquery";
+    import ThemifyIcon from "vue-themify-icons";
 
     // 引入 DatePicker
-    import DatePicker from 'vue2-datepicker';
-    import '@/assets/scss/kit/datepicker.scss';
-    import 'vue2-datepicker/locale/zh-tw';
+    import DatePicker from "vue2-datepicker";
+    import "@/assets/scss/kit/datepicker.scss";
+    import "vue2-datepicker/locale/zh-tw";
 
-    import NavbarComponent from '@/components/NavbarComponent.vue';
-    import FooterComponent from '@/components/FooterComponent.vue';
+    import NavbarComponent from "@/components/NavbarComponent.vue";
+    import FooterComponent from "@/components/FooterComponent.vue";
 
     export default {
-        name: 'SingleRoom',
+        name: "SingleRoom",
 
         components: {
             DatePicker,
@@ -212,20 +240,20 @@
                 axiosHeaders: {
                     headers: {
                         Authorization: `Bearer ${process.env.VUE_APP_TOKEN}`,
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
                     },
                 },
-                roomID: '',
-                testRoomID: '3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu',
+                roomID: "",
+                testRoomID: "3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu",
                 roomData: {},
                 roomInfo: {}, // 房間資訊(不含 booking 資訊)
                 serverReservedInfo: {},
 
                 // 最終要丟出的資料都放這裡
                 reservingInfo: {
-                    name: '',
-                    tel: '',
+                    name: "",
+                    tel: "",
                     date: [],
                 },
                 // 只有起始、終止日期
@@ -240,10 +268,23 @@
                 randomNumArr: [],
 
                 modalMsg: { // Modal 訊息內容
-                    title: '',
-                    content: '',
+                    title: "",
+                    content: "",
                 },
             };
+        },
+
+
+        watch: {
+            // 如果沒有監聽的話，會無法成功跳轉頁面
+            "$route"(to, from) {
+                if (to.query !== from.query) {
+                    this.judgeRoomByRouterParam();
+                    this.getSingleRoom();
+                    this.getRandomRoom();
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                }
+            }
         },
 
 
@@ -254,24 +295,11 @@
 
         mounted() {
             this.getSingleRoom();
+            this.getRandomRoom();
         },
 
 
         methods: {
-
-            showModal(param = '成功') {
-                if (param === '成功') {
-                    this.modalMsg.title = '成功預約！';
-                    const dateArr = this.expandReservingDateArr.map(item => `${item} 晚上`).join(' <br/>');
-                    // .map() 記得要 return ，不然會跑出 undefined 喔~
-                    this.modalMsg.content = `您已成功預約：<br/>${dateArr}<br/><br/>期待您的蒞臨~`;
-                } else {
-                    this.modalMsg.title = '預約失敗QQ';
-                    this.modalMsg.content = "請重新整理頁面後再次嘗試，或聯絡客服人員<br/><br/><i class='ti-mobile'></i> 電話：02-2320-6239<br/><i class='ti-email'></i>  E-mail：public_web@oop.gov.tw";
-                }
-                $('#feedbackModal').modal('show');
-            },
-
 
             judgeRoomByRouterParam() {
                 this.roomID = this.$route.query.roomID;
@@ -286,6 +314,8 @@
                         // vm.roomData = resolveRes.data;
                         vm.roomInfo = resolveRes.data.room[0];
                         vm.serverReservedInfo = resolveRes.data.booking;
+                        // descriptionShort
+
                         // console.log(vm.roomInfo);
                     }).catch(() => {
                         // console.log("取得資料失敗");
@@ -346,27 +376,27 @@
                         if (resolveRes.data.success) { // 成功預約
                             // console.log("成功預約");
                             // 先跳出 Modal
-                            vm.showModal('成功');
+                            vm.showModal("成功");
                             // 再重置預約資料
-                            vm.reservingInfo.name = '';
-                            vm.reservingInfo.tel = '';
+                            vm.reservingInfo.name = "";
+                            vm.reservingInfo.tel = "";
                             vm.reservingDate = [];
                             vm.expandReservingDateArr = [];
                             vm.getSingleRoom();
                         } else {
-                            vm.showModal('失敗');
+                            vm.showModal("失敗");
                         }
                     })
                     .catch((rejectRes) => {
                         // console.dir(rejectRes);
-                        vm.showModal('失敗');
+                        vm.showModal("失敗");
                     });
             },
 
 
             clearAllRoomsReservation() {
                 const vm = this;
-                vm.axios.delete('https://challenge.thef2e.com/api/thef2e2019/stage6/rooms', vm.axiosHeaders)
+                vm.axios.delete("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", vm.axiosHeaders)
                     .then((resolveRes) => {
                         // console.dir(resolveRes);
                         if (resolveRes.data.success) {
@@ -397,10 +427,26 @@
             },
 
 
+            showModal(param = "成功") {
+                if (param === "成功") {
+                    this.modalMsg.title = "成功預約！";
+                    const dateArr = this.expandReservingDateArr.map(item => `${item} 晚上`).join(" <br/>");
+                    // .map() 記得要 return ，不然會跑出 undefined 喔~
+                    this.modalMsg.content = `您已成功預約：<br/>${dateArr}<br/><br/>期待您的蒞臨~`;
+                } else {
+                    this.modalMsg.title = "預約失敗QQ";
+                    this.modalMsg.content = "請重新整理頁面後再次嘗試，或聯絡客服人員<br/><br/><i class='ti-mobile'></i> 電話：02-2320-6239<br/><i class='ti-email'></i>  E-mail：public_web@oop.gov.tw";
+                }
+                $("#feedbackModal").modal("show");
+            },
+
+
             // 取得兩間隨機推薦的房間
             getRandomRoom() {
                 const vm = this;
-                vm.axios.get('https://challenge.thef2e.com/api/thef2e2019/stage6/rooms', vm.axiosHeaders)
+                vm.randomRoom = []; // 先重置 randomRoom 資料，避免在 singleRoom 頁面彼此跳轉時不斷增加
+
+                vm.axios.get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", vm.axiosHeaders)
                     .then((resolveRes) => {
                         // console.log(resolveRes);
                         let allRoomData;
@@ -418,6 +464,7 @@
                         vm.getRandomNum();
                         vm.randomRoom.push(temp[vm.randomNumArr[0]]);
                         vm.randomRoom.push(temp[vm.randomNumArr[1]]);
+                        console.log("vm.randomRoom", vm.randomRoom);
                     })
                     .catch((rejectRes) => {
                         // console.log(rejectRes);
@@ -445,77 +492,10 @@
             },
 
 
-            roomInfozxcvzxcv() {
-                this.roomInfo;
-
-                // 房間 id
-                this.roomInfo.id = '3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu';
-
-                // 房間名稱
-                this.roomInfo.name = 'Single Room';
-
-                // 房間圖片
-                this.roomInfo.imageUrl = [
-                    'https://images.unsplash.com/photo-1551776235-dde6d482980b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80',
-                    'https://images.unsplash.com/photo-1526880792616-4217886b9dc2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-                    'https://images.unsplash.com/photo-1515511856280-7b23f68d2996?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80',
-                ];
-
-                // 價格
-                this.roomInfo.holidayPrice = 1500;
-                this.roomInfo.normalDayPrice = 1380;
-
-
-                // 房間設施
-                this.roomInfo.amenities = {
-                    // wifi
-                    'Wi-Fi': true,
-                    //  冷氣
-                    'Air-Conditioner': true,
-
-                    // 早餐
-                    Breakfast: true,
-                    // 漂亮風景
-                    'Great-View': false,
-                    // 迷你八
-                    'Mini-Bar': false,
-                    // 兒童友善
-                    'Child-Friendly': false,
-                    // 寵物友善
-                    'Pet-Friendly': true,
-                    // 冰箱
-                    Refrigerator: true,
-                    // 客房服務
-                    'Room-Service': false,
-                    // 不能抽菸
-                    'Smoke-Free': true,
-                    // 沙發
-                    Sofa: false,
-                    // 電視
-                    Television: true,
-
-                };
-
-
-                // 入退房時間
-                this.roomInfo.checkInAndOut = {
-                    checkInEarly: '15:00',
-                    checkInLate: '19:00',
-                    checkOut: '10:00',
-                };
-
-
-                // 房間描述
-                this.roomInfo.description = 'Single Room is only reserved for one guest. There is a bedroom with a single size bed and a private bathroom. Everything you need prepared for you: sheets and blankets, towels, soap and shampoo, hairdryer are provided. In the room there is AC and of course WiFi.';
-
-
-                this.roomInfo.descriptionShort = {
-                    Bed: ['Single'],
-                    Footage: 18,
-                    GuestMax: 1,
-                    GuestMin: 1,
-                    'Private-Bath': 1,
-                };
+            toSingleRoom(roomID) {
+                // console.log(this.roomID);
+                // console.log(roomID);
+                this.$router.push({ path: "/singleRoom", query: { roomID } });
             },
 
         },
