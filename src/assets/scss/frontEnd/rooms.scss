@@ -1,4 +1,5 @@
 @import "@/assets/scss/_selfVariables"; // 自定義變數
+@import "@/assets/scss/loadingAnimate.scss";
 
 h2 {
     height: 60px;
@@ -61,69 +62,26 @@ h2 {
 // loading 動畫
 .loadingAnimation {
     max-width: 100%;
-    height: calc(100vh - 60px - 40px - 30px);
-    // 手機版
+    height: calc(100vh - 60px - 46px - 30px);
     /*
         100 vh 為一個 singleRoomArea 的高度
         60px 為 h2 的高度
-        40px 為 footer 的高度
-        30px 為預留 margin 推擠的高度
-    */
-    // 手機版以上
-    /*
-        100 vh 為一個 singleRoomArea 的高度
-        60px 為 nav 的高度
-        40px 為 footer 的高度
+        46px 為 footer 的高度
         30px 為預留 margin 推擠的高度
     */
     margin: 15px 0;
     background-color: $light-gray;
 }
 
-.spinner {
-    width: 80px;
-    height: 80px;
-    position: relative;
-    margin: 0 auto;
-}
-
 .double-bounce1,
 .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: $dark-gray;
-    opacity: 0.6;
-    position: absolute;
-    top: calc((100vh - 60px - 40px - 30px) / 2 - 80px / 2);
-    left: 0;
-    -webkit-animation: sk-bounce 2s infinite ease-in-out;
-    animation: sk-bounce 2s infinite ease-in-out;
-}
-
-.double-bounce2 {
-    -webkit-animation-delay: -1s;
-    animation-delay: -1s;
-}
-
-@-webkit-keyframes sk-bounce {
-    0%,
-    100% {
-        -webkit-transform: scale(0);
-    }
-    50% {
-        -webkit-transform: scale(1);
-    }
-}
-
-@keyframes sk-bounce {
-    0%,
-    100% {
-        transform: scale(0);
-        -webkit-transform: scale(0);
-    }
-    50% {
-        transform: scale(1);
-        -webkit-transform: scale(1);
-    }
+    top: calc((100vh - 60px - 46px - 30px) / 2 - 80px / 2);
+     /*
+        100vh ： 一個 singleRoomArea 的高度
+        60px  ： h2 的高度
+        46px  ： footer 的高度
+        30px  ： 預留 margin 推擠的高度
+        
+        80px  ： 動畫圓圈本身的高度
+    */
 }

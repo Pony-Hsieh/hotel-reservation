@@ -15,9 +15,11 @@
         "popper.js": "^1.16.1",
         "vue": "^2.6.10",
         "vue-axios": "^3.2.4",
+        "vue-loading-overlay": "^3.4.2",
         "vue-router": "^3.0.3",
         "vue-themify-icons": "^1.0.0",
-        "vue2-datepicker": "^3.9.0"
+        "vue2-datepicker": "^3.9.0",
+        "vuex": "^3.6.2"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^3.12.0",

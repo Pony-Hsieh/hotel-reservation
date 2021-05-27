@@ -6,7 +6,7 @@
         <nav :class="{'ing' : navStatus}">
             <ul class="list-unstyled ">
                 <div class="logoArea">
-                    <img src="@/assets/img/logo_remvoe_bg.png" alt="logo">
+                    <img src="@/assets/img/logo_remvoe_bg.png" alt="logo image">
                 </div>
                 <li class="d-sm-none">
                     <button type="button" class="btn" @click="navStatus = false">
@@ -51,21 +51,16 @@
         },
 
         watch: {
-            $route(to, from) {
-                // console.log("TO", to);
-                // console.log("FROM", from);
+            $route(to) {
                 if (to.$route.fullPath === "/") {
                     this.navStatus = true;
                 } else {
                     this.navStatus = false;
-                    // console.log(to.$route.fullPath);
                 }
             },
         },
 
-        mounted() {
-            // console.log(this.$route);
-
+        beforeMount() {
             if (this.$route.fullPath === "/") {
                 this.navStatus = true;
             } else {

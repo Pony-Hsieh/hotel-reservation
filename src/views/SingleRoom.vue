@@ -184,7 +184,11 @@
                         <h4>{{ randomRoom[index].name }}</h4>
                         <h5>平日價格：NTD ${{ randomRoom[index].normalDayPrice }}</h5>
                         <h5>假日價格：NTD ${{ randomRoom[index].holidayPrice }}</h5>
-                        <a href="#" @click="toSingleRoom(randomRoom[index].id)">前往指定房型頁面</a>
+                        <router-link :to="{ path: 'singleRoom', query: { roomID: randomRoom[index].id }}">
+                            <ThemifyIcon icon="hand-point-right" />
+                            更多房間資訊
+                            <ThemifyIcon icon="hand-point-left" />
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -245,7 +249,7 @@
                     },
                 },
                 roomID: "",
-                testRoomID: "3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu",
+                // testRoomID: "3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu",
                 roomData: {},
                 roomInfo: {}, // 房間資訊(不含 booking 資訊)
                 serverReservedInfo: {},
@@ -277,23 +281,27 @@
 
         watch: {
             // 如果沒有監聽的話，會無法成功跳轉頁面
-            "$route"(to, from) {
-                if (to.query !== from.query) {
+            $route(to, from) {
+                // console.log("TO", to);
+                // console.log("FROM", to);
+                if (to.fullPath !== from.fullPath) {
+                    this.$store.dispatch("updateIsLoading", true);
                     this.judgeRoomByRouterParam();
                     this.getSingleRoom();
                     this.getRandomRoom();
-                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    // document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                    });
                 }
             }
         },
 
 
         created() {
+            this.$store.dispatch("updateIsLoading", true);
             this.judgeRoomByRouterParam(); // 先將 訂單id 存入 data return 中
-        },
-
-
-        mounted() {
             this.getSingleRoom();
             this.getRandomRoom();
         },
@@ -306,17 +314,15 @@
             },
 
 
+            // 取得單一房型資料
             getSingleRoom() {
                 const vm = this;
                 vm.axios.get(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${vm.roomID}`, vm.axiosHeaders)
                     .then((resolveRes) => {
                         // console.log("getSingleRoom", resolveRes);
-                        // vm.roomData = resolveRes.data;
                         vm.roomInfo = resolveRes.data.room[0];
                         vm.serverReservedInfo = resolveRes.data.booking;
-                        // descriptionShort
-
-                        // console.log(vm.roomInfo);
+                        vm.$store.dispatch("updateIsLoading", false);
                     }).catch(() => {
                         // console.log("取得資料失敗");
                         window.reload();
@@ -324,6 +330,7 @@
             },
 
 
+            // 停用已被預約的日期
             notAllowedReservedDate(date) {
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
@@ -358,6 +365,7 @@
             },
 
 
+            // 發送預約資訊
             sendRevervation() {
                 const vm = this;
                 vm.expandReservingDate();
@@ -394,6 +402,7 @@
             },
 
 
+            // 清除此房型所有預約日期
             clearAllRoomsReservation() {
                 const vm = this;
                 vm.axios.delete("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", vm.axiosHeaders)
@@ -449,9 +458,9 @@
                 vm.axios.get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", vm.axiosHeaders)
                     .then((resolveRes) => {
                         // console.log(resolveRes);
-                        let allRoomData;
+                        // let allRoomData;
                         const temp = [];
-                        allRoomData = resolveRes.data.items;
+                        let allRoomData = resolveRes.data.items;
 
                         // 移除頁面中的房間
                         allRoomData.forEach((item) => {
@@ -464,7 +473,7 @@
                         vm.getRandomNum();
                         vm.randomRoom.push(temp[vm.randomNumArr[0]]);
                         vm.randomRoom.push(temp[vm.randomNumArr[1]]);
-                        console.log("vm.randomRoom", vm.randomRoom);
+                        // console.log("vm.randomRoom", vm.randomRoom);
                     })
                     .catch((rejectRes) => {
                         // console.log(rejectRes);
@@ -476,26 +485,35 @@
                 const arr = [0, 1, 2, 3, 4]; // 原有陣列放全部數字
                 const result = []; // 開另一個空陣列
 
-                for (let i = 0; i >= 0; i++) {
+
+                // for 寫法
+                /*
+                    for (let i = 0; i >= 0; i++) {
+                        const randomNum = Math.floor(Math.random() * arr.length); // 取得 0~4 隨機數字
+                        // console.log("result[0]", result[0]);
+                        if (result[0] !== randomNum) { // 避免加入重複的數字
+                            // 如果是空陣列，一定可以加入，因為空陣列的 result[0] 是 undefined
+                            result.push(randomNum);
+                        }
+                        if (result.length === 2) { // 因為我只有要取兩個不同的隨機數字，因此長度為 2 的時候就停止
+                            break;
+                        }
+                    }
+                */
+
+
+                // while 寫法
+                while (result.length < 2) {
                     const randomNum = Math.floor(Math.random() * arr.length); // 取得 0~4 隨機數字
-                    // console.log("result[0]", result[0]);
                     if (result[0] !== randomNum) { // 避免加入重複的數字
                         // 如果是空陣列，一定可以加入，因為空陣列的 result[0] 是 undefined
                         result.push(randomNum);
                     }
-                    if (result.length === 2) { // 因為我只有要取兩個不同的隨機數字，因此長度為 2 的時候就停止
-                        break;
-                    }
                 }
+
+
                 this.randomNumArr = result;
                 // console.log("this.randomNumArr", this.randomNumArr);
-            },
-
-
-            toSingleRoom(roomID) {
-                // console.log(this.roomID);
-                // console.log(roomID);
-                this.$router.push({ path: "/singleRoom", query: { roomID } });
             },
 
         },

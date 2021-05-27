@@ -35,11 +35,11 @@
                     <div class="singleRoomInfo">
                         <div>
                             <h3>{{ item.name }}</h3>
-                            <a href="#" @click.prevent="toSingleRoom(item.id)">
+                            <router-link :to="{ path: 'singleRoom', query: { roomID: item.id }}">
                                 <ThemifyIcon icon="hand-point-right" />
                                 更多房間資訊
                                 <ThemifyIcon icon="hand-point-left" />
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -60,54 +60,31 @@
     export default {
         name: "Rooms",
 
+        
         components: {
             ThemifyIcon,
             NavbarComponent,
             FooterComponent,
         },
 
-        data() {
-            return {
-                allRoomData: "",
-                loadingStatus: true,
-            };
+        
+        computed: {
+
+            allRoomData() {
+                return this.$store.state.allRoomData;
+            },
+
+            loadingStatus() {
+                return this.$store.state.loadingStatus;
+            },
+
         },
 
+        
         created() {
-            this.getAllRoom();
+            this.$store.dispatch("getAllRoom");
         },
 
-
-        methods: {
-
-            getAllRoom() {
-                const vm = this;
-                vm.loadingStatus = true;
-
-                vm.axios.get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", {
-                    headers: {
-                        authorization:
-                            `Bearer ${process.env.VUE_APP_TOKEN}`, // 已改為自己的 token
-                        "content-type": "application/json",
-                    },
-                })
-                    .then((resolveRes) => {
-                        // console.log(resolveRes);
-                        vm.allRoomData = resolveRes.data.items;
-                        // console.log("vm.allRoomData", vm.allRoomData);
-                        vm.loadingStatus = false;
-                    })
-
-                    .catch((rejectRes) => {
-                        // console.log(rejectRes);
-                    });
-            },
-
-            toSingleRoom(roomID) {
-                this.$router.push({ path: "/singleRoom", query: { roomID } });
-            },
-
-        },
     };
 </script>
 
