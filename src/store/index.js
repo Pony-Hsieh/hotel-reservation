@@ -47,7 +47,7 @@ export default new Vuex.Store({
                 第二個參數 payload 不一定要寫
             */
 
-            // 如果已經有房型資料的資料，就不用重新撈
+            // 如果已經有所有房型資料的話，就不用重新撈
             if (this.state.allRoomData.length !== 0) {
                 return;
             }
