@@ -21,7 +21,7 @@
 
 2. 練習使用日期選擇套件
 
-3. 練習原生 JS，AJAX 撈資料時的 loading 效果
+3. 練習使用原生 JS 達成 AJAX 撈資料時的 loading 效果
 
 4. 練習使用 Vuex 管理資料狀態
 
@@ -89,7 +89,18 @@
 <br>
 
 
-● 單一房型頁面：
+● [所有房型頁面](https://pony-hsieh.github.io/hotel-reservation/dist/#/rooms)：
+
+1. 使用 Vuex 管理資料狀態
+
+    寫在 
+    [Rooms.vue](https://github.com/Pony-Hsieh/hotel-reservation/blob/master/src/views/Rooms.vue)、[index.js](https://github.com/Pony-Hsieh/hotel-reservation/blob/master/src/store/index.js) 中
+
+<br>
+<br>
+
+
+● [單一房型頁面](https://pony-hsieh.github.io/hotel-reservation/dist/#/singleRoom?roomID=3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu)：
 
 1. 限定日期預約功能
     
@@ -103,7 +114,6 @@
 
 <br>
 
-
 2. 使用原生 JS，達成使用 AJAX 撈資料的過程中，有 loading 動畫的效果
 
     寫在
@@ -116,8 +126,7 @@
 
 <br>
 
-
-3. 隨機推薦房型功能
+3. 隨機推薦房型功能(平版、桌機才有此功能)
 
     寫在 [SingleRoom.vue](https://github.com/Pony-Hsieh/hotel-reservation/blob/master/src/views/SingleRoom.vue) 
     中的 getRandomRoom()
@@ -126,7 +135,7 @@
 <br>
 
 
-● 其他
+● 其他：
 
 1. 使用 Bootstrap 搭配手刻 RWD
 
@@ -136,6 +145,5 @@
     中
 
     <br>
-
 
 2. 使用 SCSS 管理 CSS 樣式
